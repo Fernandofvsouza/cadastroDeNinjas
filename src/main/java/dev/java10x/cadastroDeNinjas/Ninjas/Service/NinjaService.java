@@ -33,4 +33,8 @@ public class NinjaService {
         return ninjaRepository.save(ninja);
     }
 
+    //Deletar o ninja - tem que ser um metodo void
+    public void deletarNinjaPorId(Long id) {
+        ninjaRepository.deleteById(id);
+    }
 }

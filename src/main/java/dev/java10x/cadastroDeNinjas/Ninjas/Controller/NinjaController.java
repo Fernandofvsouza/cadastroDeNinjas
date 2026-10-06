@@ -23,8 +23,8 @@ public class NinjaController {
 
     //Adcionar ninja(Create)
     @PostMapping("/criar")
-    public String criarNinja(){
-        return "Ninja criado";
+    public NinjaModel criarNinja(@RequestBody NinjaModel ninja){
+        return ninjaService.criarNinja(ninja);
     }
 
     //Procurar ninja por id(Create)

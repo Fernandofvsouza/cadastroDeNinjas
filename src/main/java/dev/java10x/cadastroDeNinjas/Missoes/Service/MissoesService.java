@@ -1,5 +1,6 @@
 package dev.java10x.cadastroDeNinjas.Missoes.Service;
 
+import dev.java10x.cadastroDeNinjas.Missoes.Mapper.MissoesMapper;
 import dev.java10x.cadastroDeNinjas.Missoes.Model.MissoesModel;
 import dev.java10x.cadastroDeNinjas.Missoes.Repository.MissoesRepository;
 import org.springframework.stereotype.Service;
@@ -10,9 +11,11 @@ import java.util.Optional;
 @Service
 public class MissoesService {
     private MissoesRepository missoesRepository;
+    private MissoesMapper missoesMapper;
 
-    public MissoesService(MissoesRepository missoesRepository) {
+    public MissoesService(MissoesRepository missoesRepository, MissoesMapper missoesMapper) {
         this.missoesRepository = missoesRepository;
+        this.missoesMapper = missoesMapper;
     }
 
     //Listar todas a missoes

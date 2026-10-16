@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Detalhe do Ninja</title>
+    <style>
+        :root {
+            --bg: #0f172a;
+            --surface: #1e293b;
+            --surface-2: #273449;
+            --border: #334155;
+            --text: #e2e8f0;
+            --muted: #94a3b8;
+            --primary: #6366f1;
+            --primary-hover: #4f46e5;
+            --info: #0ea5e9;
+            --info-hover: #0284c7;
+            --radius: 12px;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+            background: radial-gradient(circle at top left, #1e1b4b 0%, var(--bg) 45%);
+            color: var(--text);
+            padding: 40px 20px;
+        }
+
+        h1 {
+            max-width: 900px;
+            margin: 0 auto 24px;
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            background: linear-gradient(90deg, #a5b4fc, #818cf8);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .card {
+            max-width: 900px;
+            margin: 0 auto 24px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 28px;
+        }
+
+        .card h2 {
+            margin: 0 0 20px;
+            font-size: 1.5rem;
+            color: #fff;
+        }
+
+        .card p {
+            margin: 10px 0;
+            font-size: 0.95rem;
+        }
+
+        .card strong {
+            color: var(--muted);
+            display: inline-block;
+            min-width: 70px;
+        }
+
+        h3 {
+            max-width: 900px;
+            margin: 0 auto 12px;
+            font-size: 1.1rem;
+            color: #c7d2fe;
+        }
+
+        table {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            border-collapse: separate;
+            border-spacing: 0;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            font-size: 0.95rem;
+        }
+
+        thead th {
+            background: var(--surface-2);
+            color: var(--muted);
+            text-align: left;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            padding: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        tbody td {
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--border);
+            vertical-align: middle;
+        }
+
+        tbody tr {
+            transition: background-color 0.2s ease;
+        }
+
+        tbody tr:hover {
+            background: rgba(99, 102, 241, 0.08);
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .voltar {
+            display: inline-flex;
+            align-items: center;
+            margin-top: 24px;
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+            color: #fff;
+            background: var(--primary);
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+            transition: background-color 0.2s ease, transform 0.1s ease;
+        }
+
+        .voltar:hover {
+            background: var(--primary-hover);
+            transform: translateY(-1px);
+        }
+
+        .voltar:active {
+            transform: translateY(0);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 12px;
+            }
+
+            table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+        }
+    </style>
+</head>
+<body>
+<h1>Detalhe do Ninja</h1>
+
+<div class="card">
+    <h2 th:text="${ninja.nome}"></h2>
+    <p><strong>Email:</strong> <span th:text="${ninja.email}"></span></p>
+    <p><strong>Idade:</strong> <span th:text="${ninja.idade}"></span></p>
+    <p><strong>Rank:</strong> <span th:text="${ninja.rank}"></span></p>
+</div>
+
+<div class="container">
+    <h3>Missões</h3>
+    <table>
+        <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Descrição</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="missao : ${ninja.missoes}">
+            <td th:text="${missao.nome}"></td>
+            <td th:text="${missao.descricao}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <a class="voltar" href="/ninjas/ui/listar">Voltar para a lista de ninjas</a>
+</div>
+</body>
+</html>
